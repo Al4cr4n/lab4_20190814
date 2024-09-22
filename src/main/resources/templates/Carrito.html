@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css"/>
+    <title>Carrito de Compras</title>
+</head>
+<body>
+<!-- Header con barra de navegación -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{'/'}">
+                <img src="../static/images/logo.png" alt="Logo" style="height: 40px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/catalogo'}">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/entretenimiento'}">Entretenimiento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/carrito'}">Carrito</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 border-bottom">Carrito de Compras</h1>
+
+        <!-- Mostrar "No existen items en tu carrito" si el carrito está vacío -->
+        <div th:if="${listaCarrito.size() == 0}">
+            <p>No existen items en tu carrito</p>
+        </div>
+
+        <!-- Mostrar lista de items en el carrito si no está vacío -->
+        <div th:if="${listaCarrito.size() > 0}">
+            <!-- Tabla de items en el carrito -->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${listaCarrito}">
+                    <td><img th:src="${item.flor.imagen}" alt="Imagen de la flor" class="img-thumbnail" style="max-width: 100px;"/></td>
+                    <td th:text="${item.flor.nombre}"></td>
+                    <td th:text="${item.cantidad}"></td>
+                    <td th:text="'S/ ' + ${item.flor.precio}"></td>
+                    <td th:text="'S/ ' + ${item.cantidad * item.flor.precio}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{'/pago'}">Comprar Directamente</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!-- Botón para finalizar la compra -->
+            <div class="text-end">
+                <a class="btn btn-success" th:href="@{'/carrito/finalizarCompra'}">Finalizar Compra</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

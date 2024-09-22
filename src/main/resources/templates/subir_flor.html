@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Subir Nueva Flor</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Subir Nueva Flor</h1>
+
+    <form method="post" action="/subirImagen" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="nombreFlor" class="form-label">Nombre de la Flor</label>
+            <input type="text" class="form-control" id="nombreFlor" name="nombreFlor" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="descripcionFlor" class="form-label">Descripción de la Flor</label>
+            <textarea class="form-control" id="descripcionFlor" name="descripcionFlor" rows="3" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="precioFlor" class="form-label">Precio de la Flor</label>
+            <input type="number" step="0.01" class="form-control" id="precioFlor" name="precioFlor" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="colorFlor" class="form-label">Color de la Flor</label>
+            <select class="form-select" id="colorFlor" name="colorFlor" required>
+                <option value="Rojo">Rojo</option>
+                <option value="Verde">Verde</option>
+                <option value="Azul">Azul</option>
+                <option value="Blanco">Blanco</option>
+                <option value="Amarillo">Amarillo</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="tipoFlor" class="form-label">Tipo de Flor</label>
+            <select class="form-select" id="tipoFlor" name="tipoFlor" required>
+                <option value="Rosa">Rosa</option>
+                <option value="Clavel">Clavel</option>
+                <option value="Hortencia">Hortencia</option>
+                <option value="Girasol">Girasol</option>
+                <option value="Tulipán">Tulipán</option>
+                <option value="Tulipán">Orquídea</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="ocasionFlor" class="form-label">Ocasión</label>
+            <select class="form-select" id="ocasionFlor" name="ocasionFlor" required>
+                <option value="Primavera">Primavera</option>
+                <option value="San Valentín">San Valentín</option>
+                <option value="Aniversario">Aniversario</option>
+                <option value="Día de la Amistad">Día de la Amistad</option>
+                <option value="Día del Padre">Día del Padre</option>
+                <option value="Día de la Madre">Día de la Madre</option>
+                <option value="Condolencias">Condolencias</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="stockFlor" class="form-label">Cantidad en Stock</label>
+            <input type="number" class="form-control" id="stockFlor" name="stockFlor" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="imagenFlor" class="form-label">Imagen de la Flor</label>
+            <input class="form-control" type="file" id="imagenFlor" name="imagenFlor" accept="image/*" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Subir Flor</button>
+    </form>
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

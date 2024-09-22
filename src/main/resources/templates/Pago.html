@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css"/>
+    <title>Pago - Carrito de Compras</title>
+</head>
+<body>
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 border-bottom">Simulación de Pago</h1>
+
+        <!-- Formulario para ingresar detalles de la tarjeta de crédito -->
+        <form method="post" th:action="@{/compra/realizarPago}">
+            <div class="mb-3">
+                <label for="cardNumber" class="form-label">Número de Tarjeta</label>
+                <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="0000 0000 0000 0000" required>
+            </div>
+            <div class="mb-3">
+                <label for="cardHolder" class="form-label">Titular de la Tarjeta</label>
+                <input type="text" class="form-control" id="cardHolder" name="cardHolder" placeholder="Nombre del Titular" required>
+            </div>
+            <div class="mb-3">
+                <label for="expiryDate" class="form-label">Fecha de Expiración</label>
+                <input type="text" class="form-control" id="expiryDate" name="expiryDate" placeholder="MM/AA" required>
+            </div>
+            <div class="mb-3">
+                <label for="cvv" class="form-label">CVV</label>
+                <input type="text" class="form-control" id="cvv" name="cvv" placeholder="123" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Realizar Pago</button>
+        </form>
+    </div>
+</main>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

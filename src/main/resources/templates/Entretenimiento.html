@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css"/>
+    <title>Entretenimiento - Jardín de Memoria</title>
+    <style>
+        /* Estilo personalizado para el título en amarillo */
+        .titulo-juego {
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+<!-- Header con barra de navegación -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{'/'}">
+                <img src="flores.png" alt="Logo" style="height: 40px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/catalogo'}">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/entretenimiento'}">Entretenimiento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{'/carrito'}">Carrito</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <div class="container px-4 py-5">
+        <!-- Título del juego -->
+        <h1 class="titulo-juego pb-2 border-bottom">Jardín de Memoria</h1>
+
+        <!-- Lista de usuarios y formulario de ingreso de puntaje -->
+        <div class="mt-4 mb-5">
+            <h2>Lista de Jugadores</h2>
+            <ul class="list-group mb-4">
+                <li class="list-group-item d-flex justify-content-between align-items-center" th:each="jugador : ${listaJugadores}">
+                    <span th:text="${jugador.nickname} + ' - ' + ${jugador.puntaje} + ' puntos'"></span>
+                </li>
+            </ul>
+
+            <!-- Formulario para agregar un nuevo jugador -->
+            <form method="post" th:action="@{/juego/registrar}">
+                <div class="mb-3">
+                    <label for="nickname" class="form-label">Nickname</label>
+                    <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Ingresa tu nickname" required>
+                </div>
+                <div class="mb-3">
+                    <label for="puntaje" class="form-label">Puntaje</label>
+                    <input type="number" class="form-control" id="puntaje" name="puntaje" placeholder="Ingresa tu puntaje" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Registrar Jugador</button>
+            </form>
+        </div>
+
+        <!-- Tablero del juego de memoria -->
+        <div class="row" th:each="flor : ${listaCartas}">
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img th:src="${flor.imagen}" class="card-img-top" alt="Imagen de la flor">
+                    <div class="card-body text-center">
+                        <!-- Nombre formado por tipo + color -->
+                        <p class="card-text" th:text="${flor.tipo} + ' ' + ${flor.color}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
